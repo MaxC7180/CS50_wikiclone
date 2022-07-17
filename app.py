@@ -161,6 +161,8 @@ def article():
         if request.form.get("search"):
             search = request.form.get("search")
             article = db.execute("SELECT * FROM article WHERE title LIKE ?","%" + search + "%")
+            if len(article) == 0:
+                return render_template("index.html", login = login)
             title, body = article[0]["title"], article[0]["body"]
             return render_template("article.html", title = title, body = body, login = login)
 
