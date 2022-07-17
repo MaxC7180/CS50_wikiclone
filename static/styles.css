@@ -1,0 +1,210 @@
+.central-textlogo {
+    position: relative;
+    margin: 4rem auto .5rem;
+    width: 400px;
+    font-family: Linux Libertine,Hoefler Text,Georgia,Times New Roman,Times,serif;
+    font-size: 3rem;
+    font-weight: 400;
+    line-height: 20px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.main-body {
+    background-color: #eef0f2;
+}
+.init-page {
+    background-color: #fff;
+    line-height: 15;
+    margin: .4rem 0 1.6rem;
+    font-family: Linux Libertine,Hoefler Text,Georgia,Times New Roman,Times,serif;
+}
+
+#griddychu {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 20% 20% 20%;
+    grid-template-rows: 105px 100px;
+    grid-gap: 15px;
+}
+#griddychu > div {
+    background-color: #eef0f2;
+    text-align: center;
+    font-size: 10px;
+    padding: 20px;
+}
+
+.searchStyle {
+    padding: 5px 10px;
+    height: 40px;
+    margin-left: 30%;
+    text-align: Left;
+    vertical-align: middle;
+    width: 400px;
+}
+
+.footer {
+    max-width: 100%;
+    font-size: 15px;
+    margin: 0 auto;
+    padding: 15px 20px
+}
+
+.panel {
+    background-position: center center;
+    position: absolute;
+    padding-left: 10px;
+    top: 0;
+    width: 175px;
+    height: 100%;
+}
+
+.navy {
+    margin: 5px 0px 0px 50%;
+    font-size: 5px;
+
+}
+
+.allsearch {
+    margin: 5px 0px 0px 73%;
+    font-size: 15px;
+    width: 20%;
+    height: 27px;
+}
+
+.smallfont {
+    font-size: 10px;
+    font-family: Linux Libertine,Hoefler Text,Georgia,Times New Roman,Times,serif;
+}
+
+.mediumfont {
+    font-size: 15px;
+    font-family: Linux Libertine,Hoefler Text,Georgia,Times New Roman,Times,serif;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.main-container {
+    height: 80%;
+    background-color: #ffffff;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #add8e6;
+    font-size: 15px;
+    margin: 3px 20px 0px 175px;
+    font-family: Linux Libertine,Hoefler Text,Georgia,Times New Roman,Times,serif;
+}
+
+.main-header {
+    border-bottom: 1px solid black;
+    padding-top: 10px;
+    font-size: 25px;
+}
+.main-header2 {
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-top: 15px;
+    font-size: 20px;
+    text-align: center;
+}
+.mini-header {
+    border-bottom: 1px solid grey;
+    padding-top: 3px;
+}
+.padded-header {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    padding-top: 5px;
+    font-size: 23px;
+    height: 100px;
+    text-align: center;
+    border-style: solid;
+    border-color: #f9fafb;
+    background-color: #f8fafb;
+}
+.my-button {
+    border-radius: 3px;
+    background: #3366cc;
+    margin: 5px 0px 0px 30px;
+    width: 250px;
+    height: 30px;
+    color: white;
+}
+
+.vertical-nav {
+    padding-top: 15px;
+    font-size: 12px;
+    font-family: Linux Libertine,Hoefler Text,Georgia,Times New Roman,Times,serif;
+    text-align: left;
+    margin-left: 7%;
+    font-family: sans-serif;
+}
+
+.nav-sep {
+    padding-bottom: 10px;
+    color: black;
+    text-decoration: none;
+}
+
+.my-form-control {
+    width: 300px;
+    border-color: lightgrey;
+    border-radius: 2px;
+    height: 30px;
+}
+.left-home-grid{
+    background-color: #d5fdf4;
+    border: 1px solid blue;
+    margin-left: 20px;
+}
+.inner-container-l {
+    background-color: #c0e2c6;
+    border: 1px solid grey;
+    margin: 10px 5px 10px 5px;
+    height: 30px;
+    padding-left: 10px;
+    font-size: 20px;
+}
+.inner-container-r {
+    background-color: #36c;
+    border: 1px solid grey;
+    margin: 10px 5px 10px 5px;
+    height: 30px;
+    padding-left: 10px;
+    font-size: 20px
+}
+
+.right-home-grid{
+    background-color: #eaf3ff;
+    border: 1px solid blue;
+    margin-left: 20px;
+}
+
+.container-m1 {
+    display: grid;
+    grid-template-columns: 50% 47%;
+}
+
+.text {
+    width: 100%;
+    font-size: 15px;
+    background-color: #eef0f2;
+
+}
+
+.edit-button {
+    background-color: white;
+    position: fixed;
+    right: 40px;
+    top: 100px;
+    height: 20px;
+    width: 50px;
+    font-size: 10px;
+    color: blue;
+    border-color: grey;
+    border-style: solid;
+    border-top: hidden;
+    border-bottom: hidden;
+    border-radius: 10px;
+}

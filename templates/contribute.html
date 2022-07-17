@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block main %}
+    <div>
+        <header class="main-header">
+            Contribute an Article
+        </header>
+        {{ error1 }}
+        <form action="/contribute" method="post">
+            <input autocomplete="off" class="my-form-control" name="title" placeholder="Title" required type="text"> {{ error2 }}<br>
+            <textarea class="text" id="body" name="body" placeholder="Text" rows="3" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Create Account
+{% endblock %}
+
+{% block main %}
+    <div class="mediumfont">
+        <header class="main-header">
+            Create Account
+        </header>
+        <p class="main-header2">Consider not using your real name as your username, usernames cannot be made private later</p>
+        <form action="/create" method="post">
+            <div>
+                <label for="username">Username</label><br>
+                <input class="my-form-control" autocomplete="off" id="username" name="username" placeholder="Enter your username" type="text" required>
+                {{taken}}
+            </div>
+            <div>
+                <label for="password">Password</label><br>
+                <input autocomplete="off" class="my-form-control" id="password" name="password" placeholder="Enter your password" type="password" required>
+            </div>
+            <p>It is recomended to use a unique password that you are not using on any other website</p>
+            <div>
+                <label for="Cpassword">Confirm Password </label><br>
+                <input autocomplete="off" class="my-form-control" id="Cpassword" name="Cpassword" placeholder="Enter password again" type="password" required>
+                {{ pCon }}
+            </div>
+            <div>
+                <label for="email">Email adress (recomended)</label><br>
+                <input autocomplete="off" class="my-form-control" id="email" name="email" placeholder="Enter your email adress" type="text">
+                <p>Email is required for account recovery</p>
+                <p>{{ em }}</p>
+                <img src="static/gang.jpg" width="200">
+            </div>
+            <button class="my-button" type="submit">Create your account</button>
+        </form>
+    </div>
+{% endblock %}

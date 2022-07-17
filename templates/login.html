@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log in
+{% endblock %}
+
+{% block main %}
+    {% if session["ID"] %}
+    <form action="/become" method="post">
+        <label for="forgot">Become a contributor</label><br>
+        <input autocomplete="on" class="my-form-control" id="become" name="become" placeholder="input your email" type="email" required> {{ error2 }}<br>
+        <button class="my-button" type="submit">Submit</button>
+    </form><br>
+    {% else %}
+        <div class="mediumfont">
+            <header class="main-header">
+                Log in
+            </header>
+            <form action="/login" method="post">
+                <div>
+                <label for="username">Username</label><br>
+                <input autocomplete="off" class="my-form-control" id="username" name="username" placeholder="Enter your username" type="text" required>
+                </div>
+                <div>
+                <label for="password">Password</label><br>
+                <input autocomplete="off" class="my-form-control" id="password" name="password" placeholder="Enter your password" type="password" required>
+                </div>
+                <button class="my-button" type="submit">Log in</button>
+            </form>
+            <div>
+                <form>
+                    <label for="create">Dont have an account?</label><br>
+                    <img src="static/pug.jpg" width="300"><br>
+                    <button class="my-button" type="button" onclick="window.location.href='/create';">Join Wiki clone</button>
+                </form>
+
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

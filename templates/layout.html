@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+
+        <!-- http://getbootstrap.com/docs/5.1/ -->
+        <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" rel="stylesheet">
+        <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"></script>
+
+        <link href="/static/styles.css" rel="stylesheet">
+
+        <title>Wikipedia Clone - {% block title %}{% endblock %}</title>
+
+    </head>
+    <body class="main-body">
+      <div class="panel">
+        <nav>
+          <div class="container">
+              <a class="navbar-brand" href="/index">
+                  <img src="static/wikipedia_PNG10.png" alt="Wiki Logo" width="100" height="100">
+              </a>
+              <p class="mediumfont">WIKICLONE</p>
+          </div>
+        </nav>
+        <nav class="vertical-nav">
+          <a class="nav-sep" aria-current="page" href="/index">Main page</a><br>
+          <a class="nav-sep" href="#">Contents</a><br>
+          <a class="nav-sep" href="#">Current Events</a><br>
+          <a class="nav-sep" href="/article">Random article</a><br>
+          <a class="nav-sep" href="#">About WikiClone</a><br>
+          <a class="nav-sep" href="/about">About me/Clone creator</a><br>
+          <a class="nav-sep">Donate</a><br>
+        </nav>
+        <nav class="vertical-nav">
+          <span class="mini-header">Contribute</span><br>
+          <a class="nav-sep" aria-current="page" href="/contribute">Write an article</a><br>
+          <a class="nav-sep" href="#">Learn to edit</a><br>
+          <a class="nav-sep" href="#">community portal</a><br>
+          <a class="nav-sep">Recent changes</a><br>
+          <a class="nav-sep" href="#">help</a><br>
+        </nav>
+        <nav class="vertical-nav">
+          <span class="mini-header">Tools</span><br>
+          <a class="nav-sep" aria-current="page" href="#">What links here</a><br>
+          <a class="nav-sep" href="#">Related changes</a><br>
+          <a class="nav-sep" href="#">Special pages</a><br>
+          <a class="nav-sep">Permanent link</a><br>
+          <a class="nav-sep" href="#">Page information</a><br>
+          <a class="nav-sep" href="#">Wikidata item</a><br>
+        </nav>
+      </div>
+      <div>
+        <ul class="nav justify-content-end">
+          <li class="nav-item">
+            {% if session["ID"] %}
+              <a class="nav-link disabled">{{login}}</a>
+            {% else %}
+              <a class="nav-link disabled">Not logged in</a>
+            {% endif %}
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Talk</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contributions</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/create">Create account</a>
+          </li>
+          <li class="nav-item">
+            {% if session["ID"] %}
+              <a class="nav-link" href="/logout">Log out</a>
+            {% else %}
+              <a class="nav-link" href="/login">Log in</a>
+            {% endif %}
+          </li>
+        </ul>
+        <form action="/article" method="post">
+            <input autocomplete="on" autofocus class="allsearch" name="search" id="search" type="text" placeholder="Seach cloned Wiki">
+            <button type="submit" class="btn btn-primary btn-sm">Search</button>
+        </form>
+      </div>
+      <main>
+        <div class="main-container">
+        {% block main %}{% endblock %}
+        </div>
+      </main>
+
+    </body>
+
+  </html>
