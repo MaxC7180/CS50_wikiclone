@@ -1,9 +1,14 @@
+import os
 from cs50 import SQL
 from flask import redirect, render_template, request, session
 from functools import wraps
 
 
-db = SQL("sqlite:///users.db")
+uri = os.getenv("DATABASE_URL")
+if uri.startswith("postgres://"):
+    uri = uri.replace("postgres://", "postgresql://")
+db = SQL(uri)
+
 def login_required(f):
     """Decorate routes to require login when attempting to edit something on the page"""
     @wraps(f)
