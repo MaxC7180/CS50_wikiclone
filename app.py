@@ -58,7 +58,7 @@ def login():
         if len(user_check) != 1 or not check_password_hash(user_check[0]["password"], password):
             return render_template("login.html", login = login)
 
-        session["ID"] = user_check[0]["ID"]
+        session["id"] = user_check[0]["id"]
         return render_template("index.html", login = username)
 
     return render_template("login.html", login = login)
