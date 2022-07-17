@@ -3,7 +3,6 @@ Flask
 Flask-Session
 flask_mail
 requests
-functools
 gunicorn
 psycopg2
 os
