@@ -8,17 +8,17 @@ def login_required(f):
     """Decorate routes to require login when attempting to edit something on the page"""
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        if session.get("ID") is None:
+        if session.get("id") is None:
             return redirect("/login")
         return f(*args, **kwargs)
     return decorated_function
 
 def login_check():
     try:
-        if session["ID"]:
-            id = session["ID"]
-            name = db.execute("SELECT USERNAME FROM USERS WHERE ID=?",id)
-            login = name[0]["USERNAME"]
+        if session["id"]:
+            id = session["id"]
+            name = db.execute("SELECT username FROM users WHERE id=?",id)
+            login = name[0]["username"]
             return login
     except:
         login = "Not logged in"

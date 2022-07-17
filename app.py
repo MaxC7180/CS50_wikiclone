@@ -53,9 +53,9 @@ def login():
         username = request.form.get("username")
         password = request.form.get("password")
 
-        user_check = db.execute("SELECT * FROM USERS WHERE USERNAME = ?", username)
+        user_check = db.execute("SELECT * FROM users WHERE username = ?", username)
         #user does not exist or passwords do not match
-        if len(user_check) != 1 or not check_password_hash(user_check[0]["PASSWORD"], password):
+        if len(user_check) != 1 or not check_password_hash(user_check[0]["password"], password):
             return render_template("login.html", login = login)
 
         session["ID"] = user_check[0]["ID"]
@@ -70,9 +70,9 @@ def become():
         if not request.form.get("become"):
             return render_template("login.html", login = login)
         email = request.form.get("become")
-        email_check = db.execute("SELECT * FROM USERS WHERE EMAIL=?", email)
-        cur_user = db.execute("SELECT USERNAME FROM USERS WHERE ID = ?", session['ID'])
-        if len(email_check) != 1 or email_check[0]['USERNAME'] != cur_user[0]['USERNAME']:
+        email_check = db.execute("SELECT * FROM users WHERE email=?", email)
+        cur_user = db.execute("SELECT username FROM users WHERE id = ?", session['id'])
+        if len(email_check) != 1 or email_check[0]['username'] != cur_user[0]['username']:
             return render_template("login.html", login = login, error2="Email does not exist/ does not match user")
         msg = Message('WikiClone Contributer Request', sender='WikicloneProject@gmail.com', recipients = [email])
         msg.html = "<b>{email} wants to become a contrributor</b><br>".format(email=email)
@@ -100,7 +100,7 @@ def create_account():
             return render_template("create.html", pCon = pCon)
         #user decided to put an email and we must check if its in use
         if request.form.get("email"):
-            used_email = db.execute("SELECT * FROM USERS WHERE EMAIL = ?", request.form.get("email"))
+            used_email = db.execute("SELECT * FROM users WHERE email = ?", request.form.get("email"))
             #email is already in use
             if len(used_email) != 0:
                 return render_template("create.html", em = "Email already in use")
@@ -110,18 +110,18 @@ def create_account():
         user = request.form.get("username")
         password = generate_password_hash(request.form.get("password"))
 
-        user_ID_num = db.execute("SELECT ID FROM USERS")
+        user_ID_num = db.execute("SELECT id FROM users")
         if len(user_ID_num) > 0:
-            user_ID = user_ID_num[len(user_ID_num) - 1]["ID"] + 1
+            user_ID = user_ID_num[len(user_ID_num) - 1]["id"] + 1
         else:
             user_ID = 1
 
         #Check if the username is taken
-        user_check = db.execute("SELECT * FROM USERS WHERE USERNAME = ?", user)
+        user_check = db.execute("SELECT * FROM users WHERE username = ?", user)
         if len(user_check) != 0:
             return render_template("create.html", taken = "Username is already in use")
 
-        db.execute("INSERT INTO USERS VALUES (?, ?, ?, 0, ?)", user_ID, user, password, email)
+        db.execute("INSERT INTO users VALUES (?, ?, ?, 0, ?)", user_ID, user, password, email)
         return render_template("create.html", login = login)
     return render_template("create.html", login = login)
 
@@ -133,21 +133,21 @@ def about_me():
 @login_required
 def contribute():
     login = login_check()
-    user = db.execute("SELECT CONTRIBUTOR FROM USERS WHERE ID = ?", session["ID"])
-    if user[0]["CONTRIBUTOR"] != 1:
+    user = db.execute("SELECT contributor FROM users WHERE id = ?", session["id"])
+    if user[0]["contributor"] != 1:
         return redirect("/login")
     if request.method == "POST":
         if not request.form.get("title") or not request.form["body"]:
             error1 = "You did not input all of the perameters"
             return render_template("contribute.html", error1 = error1, login=login)
         title, body = request.form.get("title"), request.form.get("body")
-        check = db.execute("SELECT TITLE FROM ARTICLE WHERE TITLE=?", title)
+        check = db.execute("SELECT title FROM article WHERE title=?", title)
         #title is already in use
         if len(check) != 0:
             error2 = "Title is already in use"
             return render_template("contribute.html", error2 = error2, login=login)
 
-        db.execute("INSERT INTO ARTICLE VALUES (?, ?)", title, body)
+        db.execute("INSERT INTO article VALUES (?, ?)", title, body)
 
     return render_template("contribute.html", login=login)
 
@@ -160,12 +160,12 @@ def article():
                 return render_template("index.html", login = login)
         if request.form.get("search"):
             search = request.form.get("search")
-            article = db.execute("SELECT * FROM ARTICLE WHERE TITLE LIKE ?","%" + search + "%")
-            title, body = article[0]["TITLE"], article[0]["BODY"]
+            article = db.execute("SELECT * FROM article WHERE title LIKE ?","%" + search + "%")
+            title, body = article[0]["title"], article[0]["body"]
             return render_template("article.html", title = title, body = body, login = login)
 
-        perms_check = db.execute("SELECT CONTRIBUTOR FROM USERS WHERE ID = ?", session["ID"])
-        if perms_check[0]["CONTRIBUTOR"] == 1:
+        perms_check = db.execute("SELECT contributor FROM users WHERE id = ?", session["id"])
+        if perms_check[0]["contributor"] == 1:
             info = request.data
             tt, text, count = [], [], 0
             for c in info:
@@ -181,7 +181,7 @@ def article():
                     text.append(chr(c))
                     count = 0
             title1, edited_text = tt[0], tt[1]
-            db.execute("UPDATE ARTICLE SET BODY = ? WHERE TITLE = ?", edited_text, title1)
+            db.execute("UPDATE article SET body = ? WHERE title = ?", edited_text, title1)
 
     title, body, pic = "Such empty", "Many vacancies, use the search bar and type something in it :p", True
     return render_template("article.html", title=title, body=body, pic=pic, login=login)
