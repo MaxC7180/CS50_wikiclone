@@ -30,7 +30,6 @@ uri = os.getenv("DATABASE_URL")
 if uri.startswith("postgres://"):
     uri = uri.replace("postgres://", "postgresql://")
 db = SQL(uri)
-#db = SQL("sqlite:///users.db")
 
 
 @app.route("/", methods=["GET","POST"])
