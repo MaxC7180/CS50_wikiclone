@@ -110,20 +110,13 @@ def create_account():
         user = request.form.get("username")
         password = generate_password_hash(request.form.get("password"))
 
-        user_ID_num = db.execute("SELECT id FROM users")
-        #to delete
-        if len(user_ID_num) > 0:
-            user_ID = user_ID_num[len(user_ID_num) - 1]["id"] + 1
-        else:
-            user_ID = 1
-
         #Check if the username is taken
         user_check = db.execute("SELECT * FROM users WHERE username = ?", user)
         if len(user_check) != 0:
             return render_template("create.html", taken = "Username is already in use")
 
-        db.execute("INSERT INTO users (username, password, contributor, email) VALUES(o?, ?, f, ?)", user, password, email)
-        return render_template("create.html")
+        db.execute("INSERT INTO users(username, password, contributor, email) VALUES(?, ?, 0, ?)", user, password, email)
+        return render_template("create.html" login = login)
     return render_template("create.html")
 
 @app.route("/about", methods=["GET", "POST"])
