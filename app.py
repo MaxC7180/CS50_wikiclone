@@ -141,7 +141,7 @@ def contribute():
             error2 = "Title is already in use"
             return render_template("contribute.html", error2 = error2, login=login)
 
-        db.execute("INSERT INTO article VALUES (?, ?)", title, body)
+        db.execute("INSERT INTO article VALUES (?, ?)", title.lower(), body)
 
     return render_template("contribute.html", login=login)
 
@@ -154,7 +154,7 @@ def article():
                 return render_template("index.html", login = login)
         if request.form.get("search"):
             search = request.form.get("search")
-            article = db.execute("SELECT * FROM article WHERE title LIKE ? LIMIT 1", search + "%")
+            article = db.execute("SELECT * FROM article WHERE title LIKE ? LIMIT 1", search.lower() + "%")
             if len(article) == 0:
                 return render_template("index.html", login = login)
             title, body = article[0]["title"], article[0]["body"]
