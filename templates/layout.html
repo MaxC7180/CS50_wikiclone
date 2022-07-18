@@ -56,7 +56,7 @@
       <div>
         <ul class="nav justify-content-end">
           <li class="nav-item">
-            {% if session["ID"] %}
+            {% if session["id"] %}
               <a class="nav-link disabled">{{login}}</a>
             {% else %}
               <a class="nav-link disabled">Not logged in</a>
@@ -72,7 +72,7 @@
             <a class="nav-link" href="/create">Create account</a>
           </li>
           <li class="nav-item">
-            {% if session["ID"] %}
+            {% if session["id"] %}
               <a class="nav-link" href="/logout">Log out</a>
             {% else %}
               <a class="nav-link" href="/login">Log in</a>

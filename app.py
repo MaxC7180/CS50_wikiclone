@@ -111,6 +111,7 @@ def create_account():
         password = generate_password_hash(request.form.get("password"))
 
         user_ID_num = db.execute("SELECT id FROM users")
+        #to delete
         if len(user_ID_num) > 0:
             user_ID = user_ID_num[len(user_ID_num) - 1]["id"] + 1
         else:
@@ -121,7 +122,7 @@ def create_account():
         if len(user_check) != 0:
             return render_template("create.html", taken = "Username is already in use")
 
-        db.execute("INSERT INTO users (id, username, password, contributor, email) VALUES(?, ?, ?, f, ?)", user_ID, user, password, email)
+        db.execute("INSERT INTO users (username, password, contributor, email) VALUES(o?, ?, f, ?)", user, password, email)
         return render_template("create.html")
     return render_template("create.html")
 

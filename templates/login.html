@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block main %}
-    {% if session["ID"] %}
+    {% if session["id"] %}
     <form action="/become" method="post">
         <label for="forgot">Become a contributor</label><br>
         <input autocomplete="on" class="my-form-control" id="become" name="become" placeholder="input your email" type="email" required> {{ error2 }}<br>
