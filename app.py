@@ -154,7 +154,7 @@ def article():
                 return render_template("index.html", login = login)
         if request.form.get("search"):
             search = request.form.get("search")
-            article = db.execute("SELECT * FROM article WHERE title LIKE ? COLLATE NOCASE","%" + search + "%")
+            article = db.execute("SELECT * FROM article WHERE title LIKE ? COLLATE NOCASE LIMIT 1","%" + search + "%")
             if len(article) == 0:
                 return render_template("index.html", login = login)
             title, body = article[0]["title"], article[0]["body"]
