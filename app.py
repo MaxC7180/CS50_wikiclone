@@ -121,7 +121,7 @@ def create_account():
         if len(user_check) != 0:
             return render_template("create.html", taken = "Username is already in use")
 
-        db.execute("INSERT INTO users VALUES(?, ?, ?, f, ?)", user_ID, user, password, email)
+        db.execute("INSERT INTO users (id, username, password, contributor, email) VALUES(?, ?, ?, f, ?)", user_ID, user, password, email)
         return render_template("create.html")
     return render_template("create.html")
 
