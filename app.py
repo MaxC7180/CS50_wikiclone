@@ -50,9 +50,9 @@ def login():
     if request.method == "POST":
         if not request.form.get("username") or not request.form.get("password"):
             return render_template("login.html", login = login)
+
         username = request.form.get("username")
         password = request.form.get("password")
-
         user_check = db.execute("SELECT * FROM users WHERE username = ?", username)
         #user does not exist or passwords do not match
         if len(user_check) != 1 or not check_password_hash(user_check[0]["password"], password):
@@ -121,7 +121,7 @@ def create_account():
         if len(user_check) != 0:
             return render_template("create.html", taken = "Username is already in use")
 
-        db.execute("INSERT INTO users VALUES (?, ?, ?, 0, ?)", user_ID, user, password, email)
+        db.execute("INSERT INTO users VALUES (?, ?, ?, f, ?)", user_ID, user, password, email)
         return render_template("create.html", login = login)
     return render_template("create.html", login = login)
 
