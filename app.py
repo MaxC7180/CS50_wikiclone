@@ -161,7 +161,7 @@ def article():
             return render_template("article.html", title = title, body = body, login = login)
 
         perms_check = db.execute("SELECT contributor FROM users WHERE id = ?", session["id"])
-        if perms_check[0]["contributor"] == True:
+        if perms_check[0]["contributor"] != 0:
             info = request.data
             tt, text, count = [], [], 0
             for c in info:
