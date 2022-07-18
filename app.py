@@ -122,7 +122,7 @@ def create_account():
             return render_template("create.html", taken = "Username is already in use")
 
         db.execute("INSERT INTO users VALUES (?, ?, ?, f, ?)", user_ID, user, password, email)
-        return render_template("create.html", login = login)
+        return render_template("create.html")
     return render_template("create.html")
 
 @app.route("/about", methods=["GET", "POST"])
