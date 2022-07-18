@@ -1,5 +1,5 @@
 # WIKICLONE
-#### Video Demo:  <URL HERE>
+#### Video Demo:  <https://youtu.be/zcMKyBm4K4o>
 #### Description:
 WIKICLONE is a rough copy of wikipedia that I performed in order to hone my skills in web-developement. It uses many of the concepts that were taught in the the final classes of CS50 which this project helped to solidfy into my memory. This has the basic functions of wikipedia which are searching, creating, and editing articles. In this clone, eveyone is allowed to edit articles such as they are in the original Wiki but only those with the permission can actually edit and save those changes as well as creating articles. You are also allowed to make accounts and just as wikipedia does, you do not need an email but can only recover the password via email.
 
