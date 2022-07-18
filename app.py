@@ -161,7 +161,7 @@ def article():
             return render_template("article.html", title = title, body = body, login = login)
 
         perms_check = db.execute("SELECT contributor FROM users WHERE id = ?", session["id"])
-        if perms_check[0]["contributor"] == 1:
+        if perms_check[0]["contributor"] == True:
             info = request.data
             tt, text, count = [], [], 0
             for c in info:
@@ -169,15 +169,15 @@ def article():
                     count += 1
                     if count == 3:
                         count = 0
-                        text.pop(0)
-                        text.pop(len(text)-1)
+                        #text.pop(0)
+                        #text.pop(len(text)-1)
                         tt.append(''.join(text))
                         text = []
                 else:
                     text.append(chr(c))
                     count = 0
             title1, edited_text = tt[0], tt[1]
-            db.execute("UPDATE article SET body = ? WHERE title = ?", edited_text, title1)
+            db.execute("UPDATE article SET body=? WHERE title=?", edited_text, title1)
 
     title, body, pic = "Such empty", "Many vacancies, use the search bar and type something in it :p", True
     return render_template("article.html", title=title, body=body, pic=pic, login=login)
