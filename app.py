@@ -164,6 +164,7 @@ def article():
 
 @app.route("/article_edit", methods=["GET","POST"])
 def article_edit():
+    login = login_check()
     if  request.method == "POST":
         perms_check = db.execute("SELECT contributor FROM users WHERE id = ?", session["id"])
         if perms_check[0]["contributor"] != False:
