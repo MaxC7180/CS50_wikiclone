@@ -31,7 +31,7 @@
 
         var bodyT = document.getElementById("body-o-mine")
         var div2 = document.getElementById("title-o-mine");
-        const URL = '/article'
+        const URL = '/article_edit'
         const req = new XMLHttpRequest();
         sender2 = JSON.stringify(div2.innerText);
         sender = JSON.stringify(bodyT.innerText)
@@ -50,15 +50,6 @@
 
         var to_delete = document.getElementById("editing-indicator");
         to_delete.parentNode.removeChild(to_delete);
-    }
-
-    function get_title() {
-        const URL = '/article'
-        const req = new XMLHttpRequest();
-        var div2 = document.getElementById("title-o-mine");
-        sender2 = JSON.stringify(div2.innerText);
-        req.open('POST', URL);
-        req.send(sender2);
     }
 </script>
 

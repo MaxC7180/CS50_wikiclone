@@ -159,23 +159,28 @@ def article():
                 return render_template("index.html", login = login)
             title, body = article[0]["title"], article[0]["body"]
             return render_template("article.html", title = title, body = body, login = login)
+    title, body, pic = "Such empty", "Many vacancies, use the search bar and type something in it :p", True
+    return render_template("article.html", title=title, body=body, pic=pic, login=login)
 
+@app.route("/article_edit", methods=["GET","POST"])
+def article_edit():
+    if  request.method == "POST":
         perms_check = db.execute("SELECT contributor FROM users WHERE id = ?", session["id"])
-        #if perms_check[0]["contributor"] != False:
-        info = request.data
-        tt, text, count = [], [], 0
-        for c in info:
-            if c == ord('+'):
-                count += 1
-                if count == 3:
+        if perms_check[0]["contributor"] != False:
+            info = request.data
+            tt, text, count = [], [], 0
+            for c in info:
+                if c == ord('+'):
+                    count += 1
+                    if count == 3:
+                        count = 0
+                        text.pop(0)
+                        text.pop(len(text)-1)
+                        tt.append(''.join(text))
+                        text = []
+                else:
+                    text.append(chr(c))
                     count = 0
-                    text.pop(0)
-                    text.pop(len(text)-1)
-                    tt.append(''.join(text))
-                    text = []
-            else:
-                text.append(chr(c))
-                count = 0
             title1, edited_text = tt[0], tt[1]
             db.execute("UPDATE article SET body = ? WHERE title = ?", edited_text, title1)
 
