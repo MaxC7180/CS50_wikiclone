@@ -55,7 +55,7 @@
     position: absolute;
     padding-left: 10px;
     top: 0;
-    width: 175px;
+    width: 20%;
     height: 100%;
 }
 
@@ -195,9 +195,8 @@
 
 .edit-button {
     background-color: white;
-    position: fixed;
-    right: 40px;
-    top: 100px;
+    position: relative;
+    left: 95%;
     height: 20px;
     width: 50px;
     font-size: 10px;
