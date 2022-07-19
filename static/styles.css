@@ -66,10 +66,12 @@
 }
 
 .allsearch {
-    margin: 5px 0px 0px 73%;
+    margin: 5px 0px 0px 5px;
     font-size: 15px;
     width: 20%;
     height: 27px;
+    position: relative;
+    left: 73%;
 }
 
 .smallfont {
