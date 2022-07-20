@@ -13,6 +13,7 @@ app = Flask(__name__)
 #email config
 app.config['MAIL_SERVER']='smtp.mailtrap.io'
 app.config['MAIL_PORT'] = 2525
+#These are not real credentials into an actual email account
 app.config['MAIL_USERNAME'] = '73aa9c473d5ce2'
 app.config['MAIL_PASSWORD'] = 'c17e353b36a193'
 app.config['MAIL_USE_TLS'] = True
